@@ -1,7 +1,5 @@
 %% ---------------------------------------------------------------
-%  Bond prices and yield curves for the original three-factor model
-%  r_t, π_t^E  ~ CIR      |  R_LT driven by (r_t , π_t^E) + own noise
-%  Riccati system follows Proposition 1 (b1,b2,c1,c2,a1,a2,a3)
+%  Bond prices and yield curves 
 % ---------------------------------------------------------------
 close all; clear; clc;
 
@@ -14,12 +12,12 @@ pibar = 0.01;     % long-run mean of π_t^E
 
 a1 = 0.2;        % loading of dr_t  in dR_LT
 a2 = 1 - a1;      % loading of dπ_t^E in dR_LT
-a3 = 0.001;        % own volatility of R_LT           ← novo parâmetro
+a3 = 0.001;        % own volatility of R_LT        
 
 % --------- Initial state (t = 0) -------------------------------
 r0   = 0.02;
 pi0  = 0.01;
-R0   = a1*r0 + a2*pi0;   % valor compatível com definição de R_LT
+R0   = a1*r0 + a2*pi0;   % valor de R_LT
 
 % --------- Time-to-maturity weight α(τ) ------------------------
 lambda = 0.10;
@@ -76,7 +74,7 @@ title('Yield curves – original model');
 legend('Location','best','Interpreter','latex'); grid on;
 
 %% ==============================================================
-%  Nested function: Riccati ODE system dY/dτ  (τ = T-t)
+%  Nested function: Riccati ODE system 
 % ==============================================================
 function dY = RiccatiODE(tau,Y,alpha,b1,b2,c1,c2,a1,a2,a3,rbar,pibar)
 
